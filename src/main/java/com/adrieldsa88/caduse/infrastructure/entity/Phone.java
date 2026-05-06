@@ -1,10 +1,7 @@
 package com.adrieldsa88.caduse.infrastructure.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -12,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table()
-
+@Builder
 public class Phone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
