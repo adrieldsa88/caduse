@@ -58,11 +58,16 @@ public class UserService {
     public UserDTO updateUser(String token ,UserDTO dto){
         // Busca Email Usuario a partir do Token
         String email =  jwtUtil.extractUsername(token.substring(7));
+
+        // Criptografa a senha
+        dto.setPassword(dto.getPassword() != null ? passwordEncoder.encode(dto.getPassword()) : null);
+
+        // Busca usuário no banco
         User userEntity = userRepository.findByEmail(email).orElseThrow();
+
         // Chama o metodo de updateUser para passar somente os dados novos, caso não seja novo, pega da Entity
         User user = userConverter.updateUser(dto, userEntity);
-        // Criptografa a sena e retorna o userDTO atualizado
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
         return userConverter.toUserDTO(userRepository.save(user));
 
     }
