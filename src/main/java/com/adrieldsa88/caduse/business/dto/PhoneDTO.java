@@ -8,6 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class PhoneDTO {
+    private int id;
     private String number;
     private String ddd;
 }
